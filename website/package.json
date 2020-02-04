@@ -1,0 +1,29 @@
+{
+  "scripts": {
+    "examples": "docusaurus-examples",
+    "start": "npm-run-all -p watch-css dev:watch",
+    "dev:watch": "nodemon --exec npm run dev",
+    "dev": "docusaurus-start",
+    "build": "export $(cat .env | xargs) && npm run build-css && docusaurus-build",
+    "publish-gh-pages": "export $(cat .env | xargs) && docusaurus-publish",
+    "write-translations": "docusaurus-write-translations",
+    "version": "docusaurus-version",
+    "rename-version": "docusaurus-rename-version",
+    "build-css": "node-sass-chokidar  style/ -o static/css/",
+    "watch-css": "npm run build-css && node-sass-chokidar style/ -o static/css/ --watch --recursive"
+  },
+  "devDependencies": {
+    "docusaurus": "^1.14.0",
+    "node-sass-chokidar": "^1.2.2",
+    "nodemon": "^1.17.2",
+    "npm-run-all": "^4.1.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "i18n/*"
+    ]
+  },
+  "dependencies": {
+    "underscore.string": ">=3.3.5"
+  }
+}
